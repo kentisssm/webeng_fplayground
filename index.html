@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fitness Playground</title>
+  <link rel="stylesheet" href="./assets/styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <img id="heroImage" class="hero-bg hidden" alt="Fitness Playground hero" />
+    <div class="hero-content">
+      <img id="logoImage" class="hero-logo hidden" alt="Fitness Playground logo" />
+      <h1 id="heroTitle" class="hero-title">FITNESS PLAYGROUND</h1>
+      <p id="heroTagline" class="hero-tagline">Your Journey to Fitness Starts Here</p>
+      <div class="hero-actions">
+        <a id="heroButton" class="btn btn-primary" href="#rates">Join Now</a>
+        <a class="btn btn-secondary" href="#contact">Contact Us</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-subtitle">Clean, mobile-friendly, and easy to update from the admin dashboard.</p>
+      <div id="servicesGrid" class="grid-3"></div>
+    </div>
+  </section>
+
+  <section id="rates" class="section">
+    <div class="container">
+      <h2 class="section-title">Our Rates</h2>
+      <p class="section-subtitle">Tap or click a card to flip it and view the other side.</p>
+      <div id="ratesGrid" class="rates-grid"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Gallery</h2>
+      <p class="section-subtitle">Upload real gym photos from the admin dashboard and they will appear here automatically.</p>
+      <div id="galleryGrid" class="gallery-grid"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="about">
+        <img id="aboutLogo" class="about-logo hidden" alt="Fitness Playground logo" />
+        <div class="about-copy">
+          <h2 id="aboutTitle">About Us</h2>
+          <h3 id="aboutMissionTitle">Our Mission</h3>
+          <p id="aboutBody"></p>
+          <p id="aboutBodySecond"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section contact-band">
+    <div class="container">
+      <h2 id="contactTitle" class="section-title">Contact Us</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Visit Us</h3>
+          <p id="address"></p>
+          <p id="weekdayHours"></p>
+          <p id="weekendHours"></p>
+          <p id="email"></p>
+        </div>
+        <div class="contact-card">
+          <h3>Follow Us</h3>
+          <p>Keep your community updated through your social pages.</p>
+          <div class="social-links">
+            <a id="facebookUrl" class="social-link" target="_blank" rel="noreferrer">Facebook</a>
+            <a id="instagramUrl" class="social-link" target="_blank" rel="noreferrer">Instagram</a>
+            <a class="social-link" href="./admin.html">Admin Dashboard</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="imageModal" class="modal">
+    <button id="modalClose" class="modal-close">✕</button>
+    <img id="modalImage" alt="Expanded gallery image" />
+  </div>
+
+  <script type="module" src="./assets/js/site.js"></script>
+</body>
+</html>

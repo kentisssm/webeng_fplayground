@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fitness Playground Admin</title>
+  <link rel="stylesheet" href="./assets/styles.css" />
+</head>
+<body class="admin-shell">
+  <header class="admin-header">
+    <div class="container">
+      <div class="brand-row">
+        <div class="brand-badge">FP</div>
+        <div>
+          <strong>Fitness Playground</strong>
+          <div class="muted">Supabase-powered admin dashboard</div>
+        </div>
+      </div>
+      <a class="btn btn-secondary" href="./index.html">View website</a>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <div class="container">
+      <div id="loginPanel" class="panel" style="max-width: 520px; margin: 0 auto;">
+        <h2>Admin Login</h2>
+        <p class="muted">Sign in using your Supabase email and password admin account.</p>
+        <form id="loginForm" class="stack">
+          <div class="field">
+            <label for="emailLogin">Email</label>
+            <input id="emailLogin" type="email" required placeholder="admin@example.com" />
+          </div>
+          <div class="field">
+            <label for="passwordLogin">Password</label>
+            <input id="passwordLogin" type="password" required placeholder="Enter password" />
+          </div>
+          <button class="btn btn-primary" type="submit">Login</button>
+        </form>
+      </div>
+
+      <section id="dashboardSection" class="hidden">
+        <div class="admin-grid">
+          <aside class="panel stack">
+            <div>
+              <h3>Quick Actions</h3>
+              <p class="muted">Upload images first, then paste the generated public URL into the form fields.</p>
+            </div>
+            <form id="uploadForm" class="stack">
+              <div class="field">
+                <label for="uploadFolder">Storage folder</label>
+                <select id="uploadFolder">
+                  <option value="general">General</option>
+                  <option value="services">Services</option>
+                  <option value="rates">Rates</option>
+                  <option value="gallery">Gallery</option>
+                  <option value="branding">Branding</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="uploadInput">Choose image</label>
+                <input id="uploadInput" type="file" accept="image/*" />
+              </div>
+              <button class="btn btn-primary" type="submit">Upload to Supabase Storage</button>
+            </form>
+            <div class="field">
+              <label for="uploadedImagePath">Uploaded image URL</label>
+              <input id="uploadedImagePath" type="text" readonly placeholder="Upload result appears here" />
+            </div>
+            <button id="copyUploadUrl" class="btn btn-secondary" type="button">Copy uploaded URL</button>
+            <button id="logoutBtn" class="btn btn-secondary" type="button">Logout</button>
+          </aside>
+
+          <div class="stack">
+            <section class="panel">
+              <h2>Website Content</h2>
+              <form id="siteForm" class="stack">
+                <div class="field"><label for="heroTitleInput">Hero Title</label><input id="heroTitleInput" type="text" /></div>
+                <div class="field"><label for="heroTaglineInput">Hero Tagline</label><input id="heroTaglineInput" type="text" /></div>
+                <div class="field"><label for="heroButtonTextInput">Hero Button Text</label><input id="heroButtonTextInput" type="text" /></div>
+                <div class="field"><label for="heroButtonUrlInput">Join Now Google Form URL</label><input id="heroButtonUrlInput" type="url" placeholder="https://forms.gle/..." /></div>
+                <div class="field"><label for="aboutTitleInput">About Title</label><input id="aboutTitleInput" type="text" /></div>
+                <div class="field"><label for="aboutMissionTitleInput">Mission Title</label><input id="aboutMissionTitleInput" type="text" /></div>
+                <div class="field"><label for="aboutBodyInput">About Body</label><textarea id="aboutBodyInput"></textarea></div>
+                <div class="field"><label for="aboutBodySecondInput">About Body Second Paragraph</label><textarea id="aboutBodySecondInput"></textarea></div>
+                <div class="field"><label for="contactTitleInput">Contact Title</label><input id="contactTitleInput" type="text" /></div>
+                <div class="field"><label for="addressInput">Address</label><input id="addressInput" type="text" /></div>
+                <div class="field"><label for="weekdayHoursInput">Weekday Hours</label><input id="weekdayHoursInput" type="text" /></div>
+                <div class="field"><label for="weekendHoursInput">Weekend Hours</label><input id="weekendHoursInput" type="text" /></div>
+                <div class="field"><label for="emailInput">Email</label><input id="emailInput" type="email" /></div>
+                <div class="field"><label for="facebookUrlInput">Facebook URL</label><input id="facebookUrlInput" type="url" /></div>
+                <div class="field"><label for="instagramUrlInput">Instagram URL</label><input id="instagramUrlInput" type="url" /></div>
+                <div class="field"><label for="heroImageInput">Hero Image URL</label><input id="heroImageInput" type="url" /></div>
+                <div class="field"><label for="logoImageInput">Logo Image URL</label><input id="logoImageInput" type="url" /></div>
+                <button class="btn btn-primary" type="submit">Save Website Content</button>
+              </form>
+            </section>
+
+            <section class="panel">
+              <h2>Services</h2>
+              <form id="serviceForm" class="stack">
+                <input id="serviceId" type="hidden" />
+                <div class="field"><label for="serviceTitle">Title</label><input id="serviceTitle" type="text" required /></div>
+                <div class="field"><label for="serviceDescription">Description</label><textarea id="serviceDescription" required></textarea></div>
+                <div class="field"><label for="serviceImage">Image URL</label><input id="serviceImage" type="url" /></div>
+                <div class="field"><label for="serviceSortOrder">Sort Order</label><input id="serviceSortOrder" type="number" min="1" value="1" /></div>
+                <div class="row-actions">
+                  <button class="btn btn-primary" type="submit">Save Service</button>
+                  <button id="clearServiceBtn" class="btn btn-secondary" type="button">Clear</button>
+                </div>
+              </form>
+              <div id="servicesList" class="table-list" style="margin-top:1rem;"></div>
+            </section>
+
+            <section class="panel">
+              <h2>Rates</h2>
+              <form id="rateForm" class="stack">
+                <input id="rateId" type="hidden" />
+                <div class="field"><label for="rateTitle">Title</label><input id="rateTitle" type="text" required /></div>
+                <div class="field"><label for="rateFrontImage">Front Image URL</label><input id="rateFrontImage" type="url" /></div>
+                <div class="field"><label for="rateBackImage">Back Image URL</label><input id="rateBackImage" type="url" /></div>
+                <div class="field"><label for="rateSortOrder">Sort Order</label><input id="rateSortOrder" type="number" min="1" value="1" /></div>
+                <div class="row-actions">
+                  <button class="btn btn-primary" type="submit">Save Rate Card</button>
+                  <button id="clearRateBtn" class="btn btn-secondary" type="button">Clear</button>
+                </div>
+              </form>
+              <div id="ratesList" class="table-list" style="margin-top:1rem;"></div>
+            </section>
+
+            <section class="panel">
+              <h2>Gallery</h2>
+              <form id="galleryForm" class="stack">
+                <input id="galleryId" type="hidden" />
+                <div class="field"><label for="galleryImage">Image URL</label><input id="galleryImage" type="url" required /></div>
+                <div class="field"><label for="galleryAltText">Alt Text</label><input id="galleryAltText" type="text" /></div>
+                <div class="field"><label for="gallerySortOrder">Sort Order</label><input id="gallerySortOrder" type="number" min="1" value="1" /></div>
+                <div class="row-actions">
+                  <button class="btn btn-primary" type="submit">Save Gallery Item</button>
+                  <button id="clearGalleryBtn" class="btn btn-secondary" type="button">Clear</button>
+                </div>
+              </form>
+              <div id="galleryList" class="table-list" style="margin-top:1rem;"></div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div id="toast" class="toast"></div>
+  <script type="module" src="./assets/js/admin.js"></script>
+</body>
+</html>
